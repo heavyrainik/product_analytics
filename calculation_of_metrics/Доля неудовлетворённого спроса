@@ -1,0 +1,6 @@
+create table dolya_neudovletvorennogo_sprosa as (with p as(select offer_id from offer_tables where offer_id is not null
+    except
+    select offer_id from parsed_orders_table where order_id is not null),
+t as(select count(*) as cnt1 from p),
+q as (select count(*) as cnt2 from parsed_orders_table where order_id is not null and offer_id is not null)
+select 1.0*cnt1 / cnt2 as dolya_neudovletvorennogo_sprosa from t,q)
