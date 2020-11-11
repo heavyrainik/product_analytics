@@ -1,0 +1,21 @@
+__________Создадим таблицу, в которой для каждого месяца будем хранить к-во новых клиентов.__________
+
+create table scalability as (with p as (select distinct(passenger_id) from arkhangelsk_orders
+where dttm >= '2018-02-01' and dttm < '2018-03-01' and status='complete'
+except
+    select distinct(passenger_id) from arkhangelsk_orders
+where dttm < '2018-02-01' and status = 'complete')
+select count(*), ('2018-02-01')::timestamp
+from p)
+
+
+_______________________Теперь для каждого месяца отдельно вычисляем и добавляем в таблицу_______________
+__________________ Пример для 2019-05-01______________
+
+insert into scalability (with p as (select distinct(passenger_id) from arkhangelsk_orders
+where dttm >= '2019-05-01' and dttm < '2019-06-01' and status='complete'
+except
+    select distinct(passenger_id) from arkhangelsk_orders
+where dttm < '2019-05-01' and status='complete')
+select count(*), ('2019-05-01')::timestamp
+from p)
