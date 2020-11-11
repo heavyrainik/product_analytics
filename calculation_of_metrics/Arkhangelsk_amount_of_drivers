@@ -1,0 +1,33 @@
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201801 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201802 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201803 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201804 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201805 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201806 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201807 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201808 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201809 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201810 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201811 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201812 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201901 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201902 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201903 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201904 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
+UNION
+SELECT min(dttm), count(DISTINCT driver_id) FROM fediq_team.order_tables_201905 WHERE 64<=start_point_a_lat and start_point_a_lat<=65
