@@ -1,0 +1,10 @@
+create table pins_order as (with p as (select min((created_time)::timestamp) as dttm_of_creating_pin,
+ order_id as order_id from pins_parsed_table
+ group by order_id)
+select p.dttm_of_creating_pin, parsed_orders_table.dttm as dttm_of_order_creation,
+parsed_orders_table.start_point_a_lat, parsed_orders_table.start_point_a_lon, parsed_orders_table.dest_point_b_lat,
+    parsed_orders_table.dest_point_b_lon from p, parsed_orders_table
+where p.order_id = parsed_orders_table.order_id);
+
+select sum(extract(epoch from(pins_order.dttm_of_creating_pin - pins_order.dttm_of_order_creation))) / count(*) as intuitive_of_interface
+from pins_order;
