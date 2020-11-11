@@ -1,0 +1,27 @@
+create table arkhangelsk_dolya_ottoka as (with p as (select distinct(passenger_id) as passenger_id from arkhangelsk_orders
+    where status = 'complete' and dttm < '2018-02-01'),
+    l as(select count(*) as cnt2 from p),
+ t as (select distinct(passenger_id) from arkhangelsk_orders
+    where status = 'complete' and dttm < '2018-02-01'
+except
+select distinct(passenger_id) from arkhangelsk_orders
+    where status = 'complete' and dttm < '2018-03-01' and dttm >= '2018-02-01 00:00:00'),
+j as (select count(*) as cnt1 from t)
+select 1.0 * cnt1 / cnt2 as dolya_ottoka, ('2018-02-01')::timestamp as month from j, l)
+
+
+__________Теперь добавляем для каждого месяца долю оттока в созданную таблицу_________________
+________Например для 2019-05-01____________
+
+
+
+insert into arkhangelsk_dolya_ottoka (with p as (select distinct(passenger_id) as passenger_id from arkhangelsk_orders
+    where status = 'complete' and '2019-04-01' <= dttm and dttm < '2019-05-01'),
+    l as(select count(*) as cnt2 from p),
+ t as (select distinct(passenger_id) from arkhangelsk_orders
+    where status = 'complete' and '2019-04-01' <= dttm and dttm < '2019-05-01'
+except
+select distinct(passenger_id) from arkhangelsk_orders
+    where status = 'complete' and '2019-05-01' <= dttm and dttm < '2019-06-01'),
+j as (select count(*) as cnt1 from t)
+select 1.0 * cnt1 / cnt2 as dolya_ottoka, ('2019-05-01')::timestamp as month from j, l)
