@@ -1,0 +1,7 @@
+create table coefficient_opozdaniy as (
+with p as (select count(*) as cnt
+from parsed_orders_table
+    where status = 'complete' and excepted_time_in_trip is not null and excepted_time_in_trip > 0
+and 1.0*extract(epoch from (finish_order_dttm - start_order_dttm)) > 1.1*excepted_time_in_trip),
+t as (select count(*) as cnt1 from parsed_orders_table where status = 'complete')
+select 1.0*cnt / cnt1 as coefficient_opozdaniya from p, t)
