@@ -1,0 +1,7 @@
+create table okhvat_auditorii_arkhangelska as (with p as (select count(distinct(order_id)) as cnt1
+from arkhangelsk_orders
+where order_interface = 'callcenter' or order_interface = 'web'
+   or order_interface = 'partner' or order_interface = 'mobileweb'),
+ t as (select count(distinct(arkhangelsk_orders.order_id)) as cnt2 from arkhangelsk_orders)
+select 1.0*cnt1 / cnt2 as percent
+from p, t)
