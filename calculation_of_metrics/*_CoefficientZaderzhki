@@ -1,3 +1,6 @@
+
+_______Коэффициент задержек в пути____
+
 create table coefficient_zaderzhki as (
 with p as (select count(*) as cnt
 from parsed_orders_table
