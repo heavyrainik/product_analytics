@@ -1,3 +1,5 @@
+Масштабируемость в Архангельске
+
 __________Создадим таблицу, в которой для каждого месяца будем хранить к-во новых клиентов.__________
 
 create table scalability as (with p as (select distinct(passenger_id) from arkhangelsk_orders
