@@ -1,4 +1,4 @@
-CREATE TABLE parsed_orders_table as With orders as (
+CREATE TABLE parsed_orders_table_v_2 as With orders as (
     select
         doc::json as dj
     from common.order_proc_fediq
@@ -27,3 +27,5 @@ parsed_orders as (
 
     from orders
 )
+select *
+from parsed_orders;
