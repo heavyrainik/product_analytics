@@ -1,4 +1,4 @@
-CREATE TABLE parsed_orders_table_v_2 as With orders as (
+CREATE TABLE fediq_team.parsed_orders_table_201909 as With orders as (
     select
         doc::json as dj
     from common.order_proc_fediq
@@ -7,10 +7,10 @@ parsed_orders as (
     select
 
         (dj ->> '_id')::text                                                          as order_id,
-           (dj ->> 'created')::timestamp                                                      as  dttm,
+        (dj ->> 'created')::timestamp                                                      as  dttm,
         (dj -> 'order' -> 'performer' ->> 'driver_license')::text                                     as driver_id,
         (dj -> 'order' ->> 'user_id')::text                                           as passenger_id,
-           (dj -> 'order' ->> 'taxi_status')::text                                       as status,
+        (dj -> 'order' ->> 'taxi_status')::text                                       as status,
         (dj -> 'order' -> 'request' -> 'source' -> 'geopoint' ->> 0)::decimal            as start_point_a_lon,
         (dj -> 'order' -> 'request' -> 'source' -> 'geopoint' ->> 1)::decimal            as start_point_a_lat,
         (dj -> 'order' -> 'request' -> 'destinations' -> 0 -> 'geopoint' ->> 0)::decimal as dest_point_b_lon,
@@ -22,7 +22,7 @@ parsed_orders as (
         (dj -> 'order_info' -> 'statistics' -> 'status_updates' -> 4 -> 'p' ->> 'time')::timestamp  as real_car_arrival_dttm,
         (dj -> 'order' -> 'request' ->> 'offer')::text                  as offer_id,
         (dj->'order' -> 'calc' ->> 'time')::decimal as excepted_time_in_trip,
-           (dj -> 'order' -> 'performer' -> 'tariff' ->> 'class')::text as car_class,
+        (dj -> 'order' -> 'performer' -> 'tariff' ->> 'class')::text as car_class,
     extract(epoch from ((dj -> 'order_info' -> 'statistics' -> 'status_updates' -> 6 -> 'p' ->> 'time')::timestamp - (dj -> 'order_info' -> 'statistics' -> 'status_updates' -> 5 -> 'p' ->> 'time')::timestamp) ) as real_time_in_trip
 
     from orders
