@@ -1,0 +1,9 @@
+create table fediq_team.novochahtinsk_new_client_201909 as(
+    with p as (select distinct(passenger_id) from fediq_team.novochahtinsk_orders_201909
+    where dttm >= '2018-01-01' and dttm < '2018-02-01' and status = 'complete'
+    except
+    select distinct(passenger_id) from fediq_team.novochahtinsk_orders_201909
+    where dttm < '2018-01-01'and status = 'complete')
+    select count(*), ('2018-01-01')::timestamp
+    from p
+);
