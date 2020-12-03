@@ -7,9 +7,8 @@ create temporary table passenger_to_cohort as
 select
     passenger_id,
     date_trunc('week', min(dttm)) as cohort_week
-from fediq_team.orders_table_201909
+from fediq_team.{city}_orders_201909
 where status = 'complete' and
-      {y1}<=start_point_a_lat and start_point_a_lat<={y2}
 group by passenger_id;
 
 -- Заранее посчитаем размер каждой когорты. Так будет удобнее считать ретеншн.
@@ -29,14 +28,12 @@ create table fediq_team.{city}_retention_cohorts201909 as (
                date_trunc('week', o.dttm) as current_week,
                p2c.cohort_week,
                s.cohort_size
-        from fediq_team.orders_table_201909 o
+        from fediq_team.{city}_table_201909 o
                  inner join passenger_to_cohort p2c
                             on o.passenger_id = p2c.passenger_id
                  inner join cohort_size s
                             on p2c.cohort_week = s.cohort_week
         where o.status = 'complete'
-          and {y1} <= start_point_a_lat
-          and start_point_a_lat <= {y2}
     )
 -- Строим когортную табличку
     select A.*, (A.unique_users::float/cs.cohort_size) as retention
