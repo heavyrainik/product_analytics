@@ -1,4 +1,4 @@
-  create table fediq_team.{city}_weak_mean_salary_active_{n}_201909 as
+  create table fediq_team.{city}_mean_salary_active_{n}_201909 as
     (
         SELECT week, sum(salary) / count(DISTINCT driver_id) as mean_salary
         FROM (SELECT date_trunc('w', dttm) as week,
