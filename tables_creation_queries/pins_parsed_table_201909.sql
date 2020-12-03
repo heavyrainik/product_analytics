@@ -1,4 +1,4 @@
-create table fediq_team.pins_parsed_table as
+create table fediq_team.pins_parsed_table_201909 as
 with pin as(
 select
     doc::json as dj
