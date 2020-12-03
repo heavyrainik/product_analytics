@@ -25,3 +25,8 @@ m8element,
 yaroslawserow,
 sad2017a
 with grant option;
+
+4. Добавление колонки
+
+ALTER TABLE fediq_team.{name} ADD COLUMN {сol_name} integer DEFAULT 650000;
+
