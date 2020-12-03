@@ -33,3 +33,8 @@ with grant option;
 
 ALTER TABLE fediq_team.{name} ADD COLUMN {сol_name} integer DEFAULT 650000;
 
+5. Переименование таблицы
+
+ALTER TABLE fediq_team.{name1}
+RENAME TO {name2};
+
