@@ -1,5 +1,0 @@
-create table arkhangelsk_mau as(
-with p as (select passenger_id, date_trunc('month', dttm) as month from arkhangelsk_orders where status = 'complete')
-select count(distinct passenger_id) as MAU, month
-from p
-group by(month))
