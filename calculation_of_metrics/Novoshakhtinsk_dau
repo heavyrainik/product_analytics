@@ -1,5 +1,0 @@
-create table novoshakhtinsk_dau as(
-with p as (select passenger_id, date_trunc('day', dttm) as day from novoshakhtinsk_orders where status='complete')
-select count(distinct passenger_id) as DAU, day
-from p
-group by(day))
